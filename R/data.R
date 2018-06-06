@@ -27,10 +27,13 @@
 #' env2<-humboldt.scrub.env(env2)
 #'
 #' ##load occurrence sites for the species at study area 1 (env1). Column names should be sp,x,y
-#' occ.sp1<-data(sp1)
-#'
+#' data(sp1)
+#' occ.sp1<-sp1
+#' 
 #' ##load occurrence sites for the species at study area 2 (env2). Column names should be sp,x,y
-#' occ.sp2<-data(sp2)
+#' data(sp2)
+#' occ.sp2<-sp2
+
 "sp2"
 
 #' Example Data: Conium maculatum's native distribution
@@ -62,10 +65,12 @@
 #' env2<-humboldt.scrub.env(env2)
 #'
 #' ##load occurrence sites for the species at study area 1 (env1). Column names should be sp,x,y
-#' occ.sp1<-data(sp1)
-#'
+#' data(sp1)
+#' occ.sp1<-sp1
+#' 
 #' ##load occurrence sites for the species at study area 2 (env2). Column names should be sp,x,y
-#' occ.sp2<-data(sp2)
+#' data(sp2)
+#' occ.sp2<-sp2
 "sp1"
 #' Example Data: Bioclimatic data for Europe and surrounding areas
 #' 
@@ -97,10 +102,12 @@
 #' env2<-humboldt.scrub.env(env2)
 #'
 #' ##load occurrence sites for the species at study area 1 (env1). Column names should be sp,x,y
-#' occ.sp1<-data(sp1)
-#'
+#' data(sp1)
+#' occ.sp1<-sp1
+#' 
 #' ##load occurrence sites for the species at study area 2 (env2). Column names should be sp,x,y
-#' occ.sp2<-data(sp2)
+#' data(sp2)
+#' occ.sp2<-sp2
 "env2"
 #' Example Data: Bioclimatic data for the Americas and surrounding areas
 #' 
@@ -132,10 +139,12 @@
 #' env2<-humboldt.scrub.env(env2)
 #'
 #' ##load occurrence sites for the species at study area 1 (env1). Column names should be sp,x,y
-#' occ.sp1<-data(sp1)
-#'
+#' data(sp1)
+#' occ.sp1<-sp1
+#' 
 #' ##load occurrence sites for the species at study area 2 (env2). Column names should be sp,x,y
-#' occ.sp2<-data(sp2)
+#' data(sp2)
+#' occ.sp2<-sp2
 "env1"
 
 

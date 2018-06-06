@@ -31,9 +31,11 @@ env1<-humboldt.scrub.env(env1)
 env2<-humboldt.scrub.env(env2)
 
 ##load occurrence sites for the species at study area 1 (env1). Column names should be sp,x,y
-occ.sp1<-data(sp1)
+data(sp1)
+occ.sp1<-sp1
 
 ##load occurrence sites for the species at study area 2 (env2). Column names should be sp,x,y
-occ.sp2<-data(sp2)
+data(sp2)
+occ.sp2<-sp2
 }
 \keyword{datasets}

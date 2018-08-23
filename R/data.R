@@ -71,7 +71,9 @@
 #' ##load occurrence sites for the species at study area 2 (env2). Column names should be sp,x,y
 #' data(sp2)
 #' occ.sp2<-sp2
+
 "sp1"
+
 #' Example Data: Bioclimatic data for Europe and surrounding areas
 #' 
 #' @docType data
@@ -108,7 +110,9 @@
 #' ##load occurrence sites for the species at study area 2 (env2). Column names should be sp,x,y
 #' data(sp2)
 #' occ.sp2<-sp2
+
 "env2"
+
 #' Example Data: Bioclimatic data for the Americas and surrounding areas
 #' 
 #' @docType data
@@ -145,6 +149,6 @@
 #' ##load occurrence sites for the species at study area 2 (env2). Column names should be sp,x,y
 #' data(sp2)
 #' occ.sp2<-sp2
-"env1"
 
+"env1"
 

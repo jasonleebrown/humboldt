@@ -5,3 +5,6 @@ analytics:
   	google:
  	tracking_id: "UA-124588717-1"
 
+{% if site.google_verify %}
+    <meta name="google-site-verification" content="{{ site.google_verify }}">
+{% endif %}

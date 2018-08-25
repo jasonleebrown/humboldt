@@ -1,1 +1,7 @@
 theme: jekyll-theme-modernist
+
+analytics:
+  		provider: "google-universal"
+  	google:
+ 	tracking_id: "UA-124588717-1"
+

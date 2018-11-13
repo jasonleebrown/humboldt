@@ -4,9 +4,7 @@ Performs spatial analyses of species' niche overlap in e-espace (environment or 
 
 To install open R and type the following:
 
-install.packages("devtools")
-library(devtools)
-install_github("jasonleebrown/humboldt")
+install.packages("devtools"); library(devtools); install_github("jasonleebrown/humboldt")
 
 
 ![Alt text](https://raw.githubusercontent.com/jasonleebrown/humboldt/master/humboldt.jpg?raw=true "Title") 

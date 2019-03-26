@@ -11,4 +11,4 @@ install.packages("devtools"); library(devtools); install_github("jasonleebrown/h
 
 ![Alt text](https://raw.githubusercontent.com/jasonleebrown/humboldt/master/humbodlt2.jpg?raw=true "Title") 
 ![Alt text](https://raw.githubusercontent.com/jasonleebrown/humboldt/master/humboldt3.jpg?raw=true "Title") 
-![Analytics](https://ga-beacon.appspot.com/UA-124588717-1/humboldt)](https://github.com/igrigorik/ga-beacon)
+![Analytics](https://ga-beacon.appspot.com/UA-124588717-1/humboldt)]

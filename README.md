@@ -10,13 +10,13 @@ install_github("jasonleebrown/humboldt")
 ```
 
 ## Supporting Visual Guides
-Having troubles or confused? Check out our [visual guide to paramter input](https://github.com/jasonleebrown/humboldt/blob/master/HumboldtInputExp.pdf) and [visual guide to interpreting outputs](https://github.com/jasonleebrown/humboldt/blob/master/HumboldtFigsExp.pdf).
+Having troubles or confused? Check out our [visual guide to parameter input](https://github.com/jasonleebrown/humboldt/blob/master/HumboldtInputExp.pdf) and [visual guide to interpreting outputs](https://github.com/jasonleebrown/humboldt/blob/master/HumboldtFigsExp.pdf).
 
 ## Contact 
 [We can help you sort out issues, maybe](https://www.jasonleebrown.org/get-in-touch)
 
 ## Software citation and associated manuscript:
-Brown, J.L. & Carnaval, A.C. (2019) A tale of two niches: methods, concepts and evolution. Frontiers of Biogeography, 11, e44158. doi:10.21425/F5FBG44158
+**Brown, J.L.** & **Carnaval, A.C.** (2019) A tale of two niches: methods, concepts and evolution. _Frontiers of Biogeography_, 11, e44158. doi:10.21425/F5FBG44158
 
 ## Input Data formats
 To explore data format for input data, see:
@@ -82,7 +82,7 @@ pnt2<- humboldt.pnt.index(scores.env12,scores.env2,scores.sp2,kern.smooth=1,R=10
 
 ## Niche Overlap and Niche Divergence Tests
 In our recent paper (Brown & Carnaval 2009), we then proposed a Niche Divergence Test and a Niche Overlap Test, which allows assessment of whether differences between species emerge from true niche divergences. The new methods improve accuracy of niche similarity and associated tests – consistently outperforming other tests. Our methods characterize the relationships between non-analogous and analogous climates in the species’ distributions, something not available previously.  These improvements allow assessment of whether the different environmental spaces occupied by two taxa emerge from true niche evolution, as opposed to differences in life history and biological interactors, or differences in the variety and configuration of environments accessible to them. 
-### Example
+### Example 1 - using provided datasets
 ```markdown
 library(humboldt)
 
@@ -101,6 +101,40 @@ data(sp1)
 
 ##load occurrence sites for the species at study area 2 (env2). Column names should be sp,x,y
 data(sp2)
+
+##its highly recommended that you using the function "humboldt.top.env" to select only the important environmental variables in humboldt.doitall. 
+##This step can be skipped. If you downloaded tons of environmental data, you should use this step.  If you skip this step, input env1/env2 in place of reduc.vars$env1/reduc.vars$env2 
+reduc.vars<- humboldt.top.env(env1=env1,env2=env2,sp1=sp1,sp2=sp2,rarefy.dist=50, rarefy.units="km", env.reso=0.416669,learning.rt1=0.01,learning.rt2=0.01,e.var=(3:21),pa.ratio=4,steps1=50,steps2=50,method="contrib",contrib.greater=5)
+
+##Adjust the number of variables input for e.vars after reduction to only important variables
+num.var.e<-ncol(reduc.vars$env1)
+
+##run it first with full environmental for background tests and equivalence statistic (total equivalence or divergence in current distributions)
+full<-humboldt.doitall(inname="full_extent", env1=reduc.vars$env1, env2=reduc.vars$env2, sp1=sp1, sp2=sp2, rarefy.dist=50, rarefy.units="km", env.reso=0.416669, reduce.env=0, reductype="PCA", non.analogous.environments="YES", correct.env=T, env.trim=T,  env.trim.type="RADIUS", trim.buffer.sp1=500, trim.buffer.sp2=500, pcx=1, pcy=2, col.env=e.var, e.var=c(3:num.var.e), R=100, kern.smooth=1, e.reps=100, b.reps=100, nae="YES",thresh.espace.z=0.001, p.overlap=T, p.boxplot=F, p.scatter=F, run.silent=F, ncores=2)
+
+##run it a second time with a trimmed, shared-espace. Here the equivalence statistic tests for niche evolution or niche divergence. For comparing results, change only the following model parameters: reduce.env, non.analogous.environmental, env.trim
+shared_ae<-humboldt.doitall(inname="shared_espace_ae", env1=reduc.vars$env1, env2=reduc.vars$env2, sp1=sp1, sp2=sp2, rarefy.dist=50, rarefy.units="km", env.reso=0.416669, reduce.env=2, reductype="PCA", non.analogous.environments="NO", correct.env=T, env.trim=T, env.trim.type="RADIUS", trim.buffer.sp1=500, trim.buffer.sp2=500, pcx=1,pcy=2, col.env=e.var, e.var=c(3:num.var.e), R=100, kern.smooth=1, e.reps=100, b.reps=100, nae="YES",thresh.espace.z=0.001, p.overlap=T, p.boxplot=F, p.scatter=T,run.silent=F, ncores=2)
+```
+
+### Example 1 - using user datasets
+see below for help formating raster/environment data. 
+```markdown
+library(humboldt)
+##load environmental variables for all sites of the study area 1 (env1). Column names should be x,y,X1,X2,...,Xn)
+env1<-read.delim("env1.txt",h=T,sep="\t")
+
+## load environmental variables for all sites of the study area 2 (env2). Column names should be x,y,X1,X2,...,Xn)
+env2<-read.delim("env2.txt",h=T,sep="\t") 
+
+## remove NAs and make sure all variables are imported as numbers
+env1<-humboldt.scrub.env(env1)
+env2<-humboldt.scrub.env(env2)
+
+##load occurrence sites for the species at study area 1 (env1). Column names should be sp,x,y
+occ.sp1<-na.exclude(read.delim("sp1.txt",h=T,sep="\t"))
+
+##load occurrence sites for the species at study area 2 (env2). Column names should be sp,x,y 
+occ.sp2<-na.exclude(read.delim("sp2.txt",h=T,sep="\t"))
 
 ##its highly recommended that you using the function "humboldt.top.env" to select only the important environmental variables in humboldt.doitall. 
 ##This step can be skipped. If you downloaded tons of environmental data, you should use this step.  If you skip this step, input env1/env2 in place of reduc.vars$env1/reduc.vars$env2 
@@ -167,7 +201,5 @@ Env1<-cbind(env.sampling.res,RAST_VAL)
 
 ##if necessary, repeat for  environment 2
 ```
-
-Markdown Cheatsheet: **Bold** and _Italic_ and `Code` text
 
 [![Analytics](https://ga-beacon.appspot.com/UA-124588717-1/humboldt)](https://github.com/igrigorik/ga-beacon)

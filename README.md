@@ -122,6 +122,7 @@ see below for help formating raster/environment data.
 ```markdown
 library(humboldt)
 ##load environmental variables for all sites of the study area 1 (env1). Column names should be x,y,X1,X2,...,Xn)
+##in this example all input datasets are tab delimited text files, if using csv files change the 'sep="\t"' to  'sep=","' when importing your for files
 env1<-read.delim("env1.txt",h=T,sep="\t")
 
 ## load environmental variables for all sites of the study area 2 (env2). Column names should be x,y,X1,X2,...,Xn)

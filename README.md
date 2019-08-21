@@ -170,6 +170,4 @@ Env1<-cbind(env.sampling.es,RAST_VAL)
 
 Markdown Cheatsheet: **Bold** and _Italic_ and `Code` text
 
-![Alt text](https://raw.githubusercontent.com/jasonleebrown/humboldt/master/humbodlt2.jpg?raw=true "Title") 
-![Alt text](https://raw.githubusercontent.com/jasonleebrown/humboldt/master/humboldt3.jpg?raw=true "Title") 
 [![Analytics](https://ga-beacon.appspot.com/UA-124588717-1/humboldt)](https://github.com/igrigorik/ga-beacon)

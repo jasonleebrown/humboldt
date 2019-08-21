@@ -201,7 +201,11 @@ RAST_VAL<-data.frame(extract(raster_stack, env.sampling.res))
 ##merge sampled data to input
 Env1<-cbind(env.sampling.res,RAST_VAL)
 
+##save the file as '.csv' for future analyses 
+write.csv(Env1, file = "Env1.csv")
+
 ##if necessary, repeat for  environment 2
+
 ```
 
 [![Analytics](https://ga-beacon.appspot.com/UA-124588717-1/humboldt)](https://github.com/igrigorik/ga-beacon)

@@ -163,7 +163,7 @@ env.sampling.res<- env.sampling.res[,1:2]
 RAST_VAL<-data.frame(extract(raster_stack, env.sampling.res))
 
 ##merge sampled data to input
-Env1<-cbind(env.sampling.es,RAST_VAL)
+Env1<-cbind(env.sampling.res,RAST_VAL)
 
 ##if necessary, repeat for  environment 2
 ```

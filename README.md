@@ -117,12 +117,12 @@ full<-humboldt.doitall(inname="full_extent", env1=reduc.vars$env1, env2=reduc.va
 shared_ae<-humboldt.doitall(inname="shared_espace_ae", env1=reduc.vars$env1, env2=reduc.vars$env2, sp1=sp1, sp2=sp2, rarefy.dist=50, rarefy.units="km", env.reso=0.416669, reduce.env=2, reductype="PCA", non.analogous.environments="NO", correct.env=T, env.trim=T, env.trim.type="RADIUS", trim.buffer.sp1=500, trim.buffer.sp2=500, pcx=1,pcy=2, col.env=e.var, e.var=c(3:num.var.e), R=100, kern.smooth=1, e.reps=100, b.reps=100, nae="YES",thresh.espace.z=0.001, p.overlap=T, p.boxplot=F, p.scatter=T,run.silent=F, ncores=2)
 ```
 
-### Example 1 - typical workflow
+### Example 2 - typical workflow
 see below for help formating raster/environment data. 
 ```markdown
 library(humboldt)
 ##load environmental variables for all sites of the study area 1 (env1). Column names should be x,y,X1,X2,...,Xn)
-##in this example all input datasets are tab delimited text files, if using csv files change the 'sep="\t"' to  'sep=","' when importing your for files
+##in this example all input datasets are tab-delimited text files, if using '.csv' files change the parameters below for import steps from 'sep="\t"' to 'sep=","' 
 env1<-read.delim("env1.txt",h=T,sep="\t")
 
 ## load environmental variables for all sites of the study area 2 (env2). Column names should be x,y,X1,X2,...,Xn)

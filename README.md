@@ -1,7 +1,8 @@
 ![Alt text](https://raw.githubusercontent.com/jasonleebrown/humboldt/master/humboldt.jpg?raw=true "Title") 
 
 ## Installing ‘humboldt’ in R
-skip first line if 'devtools' is already installed
+<p>Skip first line if 'devtools' is already installed.</p>
+
 Open R (or R studio) and type or paste:
 ```markdown
 install.packages("devtools")

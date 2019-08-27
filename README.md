@@ -133,10 +133,10 @@ env1<-humboldt.scrub.env(env1)
 env2<-humboldt.scrub.env(env2)
 
 ##load occurrence sites for the species at study area 1 (env1). Column names should be sp,x,y
-occ.sp1<-na.exclude(read.delim("sp1.txt",h=T,sep="\t"))
+sp1<-na.exclude(read.delim("sp1.txt",h=T,sep="\t"))
 
 ##load occurrence sites for the species at study area 2 (env2). Column names should be sp,x,y 
-occ.sp2<-na.exclude(read.delim("sp2.txt",h=T,sep="\t"))
+sp2<-na.exclude(read.delim("sp2.txt",h=T,sep="\t"))
 
 ##its highly recommended that you using the function "humboldt.top.env" to select only the important environmental variables in humboldt.doitall. 
 ##This step can be skipped. If you downloaded tons of environmental data, you should use this step.  If you skip this step, input env1/env2 in place of reduc.vars$env1/reduc.vars$env2 

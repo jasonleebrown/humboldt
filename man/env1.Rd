@@ -4,13 +4,15 @@
 \name{env1}
 \alias{env1}
 \title{Example Data: Bioclimatic data for the Americas and surrounding areas}
-\format{An data frame with 14095 rows and 21 variables:
+\format{
+An data frame with 14095 rows and 21 variables:
 \describe{
   \item{x}{longitude}
   \item{y}{latittude}
   \item{var1}{any continious enviromental variable}
   \item{var2}{any continious enviromental variable}
-}}
+}
+}
 \usage{
 data(env1)
 }

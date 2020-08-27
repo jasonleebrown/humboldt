@@ -4,12 +4,14 @@
 \name{sp2}
 \alias{sp2}
 \title{Example Data: Conium maculatum's invasive distribution in Americas}
-\format{An data frame with 482 rows and 3 variables:
+\format{
+An data frame with 482 rows and 3 variables:
 \describe{
   \item{sp}{species name}
   \item{x}{longitude}
   \item{y}{latittude}
-}}
+}
+}
 \usage{
 data(sp2)
 }

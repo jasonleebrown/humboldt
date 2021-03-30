@@ -8,4 +8,4 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: false
 RoxygenNote: 7.1.1
-Imports: adehabitatHR, adehabitatMA, geosphere, ade4, dismo, rgeos, gbm, rgdal, ks, sp, ggplot2, grid, gridExtra, gtable, RColorBrewer, scales, tcltk, snow, parallel, pbapply
+Imports: adehabitatHR, adehabitatMA, geosphere, ade4, dismo, rgeos, gbm, rgdal, ks, sp, ggplot2, grid, gridExtra, gtable, RColorBrewer, scales, tcltk, snow, parallel, pbapply,spatstat.geom

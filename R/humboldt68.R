@@ -4263,6 +4263,7 @@ nndist.spatstat.legacy <- function(X, ...) {
   UseMethod("nndist")
 }
 
+
 nndist.ppp <- local({
 
   nndist.ppp <- function(X, ..., k=1, by=NULL, method="C") {

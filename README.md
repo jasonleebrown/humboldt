@@ -11,8 +11,8 @@ install_github("jasonleebrown/humboldt")
 ```
 
 
-**If you are having issues with using a newer version of R and cannot install 'rgeos' and 'rgdal', use the following script (this script assumes 'devtools' is installed):
-**
+## If you are having issues with using a newer version of R and cannot install 'rgeos' and 'rgdal', use the following script (this script assumes 'devtools' is installed):
+
 ​Open R (or R studio) and type or paste:
 ```markdown
 packageurl2 <- "https://cran.r-project.org/src/contrib/Archive/rgeos/rgeos_0.6-4.tar.gz"

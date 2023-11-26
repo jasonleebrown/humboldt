@@ -10,6 +10,19 @@ library(devtools)
 install_github("jasonleebrown/humboldt")
 ```
 
+
+If you are having issues with using a newer version of R and cannot install 'rgeos' and 'rgdal', use the following script (this script assumes 'devtools' is installed):
+
+​Open R (or R studio) and type or paste:
+```markdown
+packageurl2 <- "https://cran.r-project.org/src/contrib/Archive/rgeos/rgeos_0.6-4.tar.gz"
+packageurl <- "https://cran.r-project.org/src/contrib/Archive/rgdal/rgdal_1.6-7.tar.gz"
+install.packages(packageurl, repos=NULL, type="source")
+install.packages(packageurl2, repos=NULL, type="source")
+devtools::install_github("jasonleebrown/humboldt")
+```
+Note the software will be updated in the future so this workaround is no longer necessary
+
 ## Supporting Visual Guides
 Having troubles or confused? Check out our [visual guide to parameter input](https://github.com/jasonleebrown/humboldt/blob/master/HumboldtInputExp.pdf) and [visual guide to interpreting outputs](https://github.com/jasonleebrown/humboldt/blob/master/HumboldtFigsExp.pdf).
 

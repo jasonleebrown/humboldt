@@ -2,7 +2,7 @@
 
 
 ## Humbodlt 2.0 is finally here!
-<p> September 9 2025.</p>
+<p> September 9, 2025</p>
     I am pleased to announce that Humbodlt 2.0 is finally ready to be released!  
 <p> Main features:</p>
 <p> -Updated to work in the Terra infrastructure</p>

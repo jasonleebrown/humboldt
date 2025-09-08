@@ -4,13 +4,14 @@
 ## Humbodlt 2.0 is finally here!
 <p> September 9 2025.</p>
     I am pleased to announce that Humbodlt 2.0 is finally ready to be released!  
-Main features:
--Updated to work in the Terra infrastructure
-    (rgeos, raster, dismo, rgdal... all have been retired)
--Predictive modeling is now done with MaxEnt in humboldt.top.env function (vs. GBM in v1.0)
+<p> Main features:</p>
+<p> -Updated to work in the Terra infrastructure</p>
+<p>     (rgeos, raster, dismo, rgdal... all have been retired)</p>
+<p> -Predictive modeling is now done with MaxEnt in humboldt.top.env function (vs. GBM in v1.0)</p>
 
-Known bugs:
-    -in humboldt.background.stat multicore support is not currently functional  
+<p>Known bugs:</p>
+<p>    -in humboldt.background.stat multicore support is not currently functional  </p>
+
 
 ## Installing ‘humboldt’ in R
 <p>Skip first line if 'devtools' is already installed.</p>

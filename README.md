@@ -1,7 +1,7 @@
 ![Alt text](https://raw.githubusercontent.com/jasonleebrown/humboldt/master/humboldt.jpg?raw=true "Title") 
 
 
-## Humbodlt 2.0 is finally here!
+## Humboldt 2.0 is finally here!
 <p> September 9, 2025</p>
     I am pleased to announce that Humbodlt 2.0 is finally ready to be released!  
 <p> Main features:</p>

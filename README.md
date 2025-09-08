@@ -2,7 +2,8 @@
 
 
 ## Humbodlt 2.0 is finally here!
-<p>I am pleased to announce that Humbodlt 2.0 is finally ready to be released!  
+<p> September 9 2025.</p>
+    I am pleased to announce that Humbodlt 2.0 is finally ready to be released!  
 Main features:
 -Updated to work in the Terra infrastructure
     (rgeos, raster, dismo, rgdal... all have been retired)

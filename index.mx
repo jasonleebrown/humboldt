@@ -126,41 +126,41 @@ To format the climate/environment raster data so that it can be used in Humbolt,
 
 ### Importing rasters into R
 ```markdown
-library(raster)
+library(terra)
 
 ##load rasters to sample, here Tiff rasters are in base working directory
-BIO1 = raster("bio1.tif")
-BIO2 = raster("bio2.tif")
-BIO12 = raster("bio12.tif")
-BIO15= raster("bio15.tif")
+BIO1 = rast("bio1.tif")
+BIO2 = rast("bio2.tif")
+BIO12 = rast("bio12.tif")
+BIO15= rast("bio15.tif")
 ```
 ### Clipping the extent of rasters in R
 ```markdown
 ##create raster stack to speed process up 
-raster_stack_full<-stack(BIO1, BIO2, BIO12, BIO15)
+raster_stack_full<-c(BIO1, BIO2, BIO12, BIO15)
 
 ##define extent for which you will clip data to.  
 ##I highly recommend determining these values from a GIS (ArcGIS or Google Earth).
 ##extent order input below is: xmin, xmax, ymin, yma
-e.in <- extent(-160, 10, 30, 60)
+e.in <- terra::ext(-160, 10, 30, 60)
 
 ##perform crop function to clip to input extent
-raster_stack <- crop(raster_stack_full, e.in)	
+raster_stack <- terra::crop(raster_stack_full, e.in)	
 ```
 
 ### Convert input rasters to 'humboldt' format for use as an environment file
 ```markdown
 ##convert one of the rasters to a point dataframe to sample.  Use any raster input.
-env.points<-rasterToPoints(BIO1, fun=NULL, spatial=FALSE)
+env.points<-as.points(BIO1, values=TRUE, na.rm=TRUE, na.all=FALSE)
 
-##rarefy points to appropriate analysis resolution.  Note it is best to start with climate data that is similar to the desired resolution.  Else this process can take a lot of time.  If climate is exactly the resolution desired (we recommend 10-40km2 for most studies), this step can be skipped.
+##rarefy points to the appropriate analysis resolution.  Note, it is best practice to start with climate data that has the desired resolution of the analysis.  This process can take a lot of time, particularly if starting with very high-resolution datasets.  If the climate layer used is exactly the resolution desired (we recommend 10-40km2 for most studies), this step can be skipped.  Other environmental layers to be sampled can remain high resolution.
 env.sampling.res<-humboldt.occ.rarefy(env.points, colxy = 1:2, rarefy.dist = 40,  rarefy.units = "km", run.silent.rar = F)
 
 ##subset only the x and y data
 env.sampling.res<- env.sampling.res[,1:2]
 
 ##Extract values to points from rasters
-RAST_VAL<-data.frame(extract(raster_stack, env.sampling.res))
+RAST_VAL<-data.frame(terra::extract(raster_stack, env.sampling.res))
 
 ##merge sampled data to input
 Env1<-cbind(env.sampling.es,RAST_VAL)

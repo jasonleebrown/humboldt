@@ -200,16 +200,6 @@ scores.env12<- rbind(zz$scores.env1[1:2],zz$scores.env2[1:2])
 scores.sp1<-zz$scores.sp1[1:2]
 scores.sp2<-zz$scores.sp2[1:2]
 
-## run create a grid of Environmental Space Function
-z1<- humboldt.grid.espace(scores.env12,scores.env1,scores.sp1,kern.smooth=1,R=100)
-z2<- humboldt.grid.espace(scores.env12,scores.env2,scores.sp2,kern.smooth=1,R=100)
-
-## plot niche in espace
-humboldt.plot.niche(z1,"Species 1","PC1","PC2")
-humboldt.plot.niche(z2,"Species 2","PC1","PC2")
-
-## perform niche equivalence tests
-niche.equiv<- humboldt.equivalence.stat(z1,z2,rep=100,kern.smooth=1, ncores=2)
 
 ## run create a grid of Environmental Space Function
 z.sp1<- humboldt.grid.espace(scores.env12,scores.env1,scores.sp1,kern.smooth=1,R=100)
@@ -222,6 +212,9 @@ humboldt.plot.niche(z.sp1,"Species 1","PC1","PC2")
 humboldt.plot.niche(z.sp2,"Species 2","PC1","PC2")
 humboldt.plot.niche(z.env1,"Env 1","PC1","PC2")
 humboldt.plot.niche(z.env2,"Env 2","PC1","PC2")
+
+## perform niche equivalence tests
+niche.equiv<- humboldt.equivalence.stat(z.sp1,z.sp2,rep=100,kern.smooth=1, ncores=2)
 
 ## measure e-space correction coeff
 ee<- humboldt.espace.correction(Z.env1=z.env1,Z.env2=z.env2,Z.sp1=z.sp1,Z.sp2=z.sp2)

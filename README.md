@@ -245,7 +245,7 @@ humboldt.plot.density(bg.sp2tosp1,"D","Background 2->1")
 
 ## estimate the Potential Niche Truncation Index
 pnt1<- humboldt.pnt.index(scores.env12,scores.env1,scores.sp1,kern.smooth=1,R=100)
-pnt2<- humboldt.pnt.index(scores.env12,scores.env2,scores.sp2,kern.smooth=1,R=100
+pnt2<- humboldt.pnt.index(scores.env12,scores.env2,scores.sp2,kern.smooth=1,R=100)
 
 ## plot pca contributions
 humboldt.plot.contrib(zz$pca.cal$co,zz$pca.cal$eig)

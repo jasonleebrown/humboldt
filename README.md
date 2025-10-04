@@ -184,43 +184,43 @@ occ.sp1<-na.exclude(read.delim("sp1.txt",h=T,sep="\t"))
 ## load occurrence sites for the species at study area 2 (env2). Column names should be 'sp', 'x','y'. 
 occ.sp2<-na.exclude(read.delim("sp2.txt",h=T,sep="\t"))
 
-## perform modeling to determin imporant variables
+## perform ecological niche modeling to determine important variables
 reduc.vars<- humboldt.top.env.brt(env1=env1,env2=env2,sp1=occ.sp1,sp2=occ.sp2,rarefy.dist=40, rarefy.units="km", env.reso=0.0833338,learning.rt1=0.01,learning.rt2=0.01,e.var=(3:21),pa.ratio=4,steps1=50,steps2=50,method="contrib",contrib.greater=5)
 
-## Adjust the number of variables input for e.vars after reduction to only important variables
+## adjust the number of variables input for e.vars after reduction to only important variables based on niche modeling
 num.var.e<-ncol(reduc.vars$env1)
 
-## convert geographic space to espace
-zz<-humboldt.g2e(env1=env1, env2=env2, sp1=occ.sp1, sp2=occ.sp2, reduce.env = 2, reductype = "PCA", non.analogous.environments = "NO", env.trim= T, e.var=c(3:21),  col.env = e.var, trim.buffer.sp1 = 200, trim.buffer.sp2 = 200, rarefy.dist = 50, rarefy.units="km", env.reso=0.41666669, kern.smooth = 1, R = 100, run.silent = F)
+## convert geographic space to environmental space, this step determines the epsace and if you are running a niche similarity test (reduce.env=0, non.alalogous.environments = "YES") of niche divergence test (reduce.env=2, non.alalogous.environments = "NO")
+zz<-humboldt.g2e(env1=env1, env2=env2, sp1=occ.sp1, sp2=occ.sp2, reduce.env = 2, reductype = "PCA", non.analogous.environments = "NO", env.trim= T, e.var=num.var.e,  col.env = e.var, trim.buffer.sp1 = 200, trim.buffer.sp2 = 200, rarefy.dist = 50, rarefy.units="km", env.reso=0.41666669, kern.smooth = 1, R = 100, run.silent = F)
 
-## store espace scores for sp1 and environments 1,2 and both environments combined output from humboldt.g2e
+## store e-space scores for species and environments environments combined output from humboldt.g2e
 scores.env1<-zz$scores.env1[1:2]
 scores.env2<-zz$scores.env2[1:2]
 scores.env12<- rbind(zz$scores.env1[1:2],zz$scores.env2[1:2])
 scores.sp1<-zz$scores.sp1[1:2]
 scores.sp2<-zz$scores.sp2[1:2]
 
-## run create a grid of Environmental Space Function
+##  estimate environmental space in 2D 
 z.sp1<- humboldt.grid.espace(scores.env12,scores.env1,scores.sp1,kern.smooth=1,R=100)
 z.sp2<- humboldt.grid.espace(scores.env12,scores.env2,scores.sp2,kern.smooth=1,R=100)
 z.env1<- humboldt.grid.espace(scores.env12,scores.env1,scores.env1,kern.smooth=1,R=100)
 z.env2<- humboldt.grid.espace(scores.env12,scores.env2,scores.env2,kern.smooth=1,R=100)
 
-## plot niche in espace
+## plot species estimated fundamental niches and habitats in espace, increase 'kern.smooth' if niche is too patchy
 humboldt.plot.niche(z.sp1,"Species 1","PC1","PC2")
 humboldt.plot.niche(z.sp2,"Species 2","PC1","PC2")
 humboldt.plot.niche(z.env1,"Env 1","PC1","PC2")
 humboldt.plot.niche(z.env2,"Env 2","PC1","PC2")
 
-## quantify niche similarity
+## quantify niche similarity between species 1 and 2
 niche.sim.uncorrect<-humboldt.niche.similarity(z.sp1,z.sp2,correct.env=F)
 niche.sim.correct<-humboldt.niche.similarity(z.sp1,z.sp2,correct.env=T)
 
-## view results
+## view results, Sorensen's D
 niche.sim.correct$D
 niche.sim.uncorrect$D
 
-## perform niche equivalence tests
+## perform niche equivalence tests 
 niche.equiv<- humboldt.equivalence.stat(z.sp1,z.sp2,rep=100,kern.smooth=1, ncores=2)
 
 ## plot results
@@ -264,7 +264,7 @@ humboldt.plot.scatter(env1[,3:4], xlab="Bio1", ylab="Bio2",main="environment")
 ```
 
 ## Getting environmental data formatted for ‘humboldt’
-The best practice is to start with climate data that is similar or matches to the desired analyses resolution (for most taxa we recommend 5 to 20km pixel resolution).
+The best practice is to start with climate data that is similar to or matches the desired analysis resolution (for most taxa we recommend 5 to 20 km pixel resolution because this usually represents the spatial grain of autocorrelation of environmental variables; if you use a smaller resolution, this likely will not impact results and only slow analyses down).
 
 To format the climate/environment raster data so that it can be used in Humbolt, follow these steps:
 1.	Importing raster data into R

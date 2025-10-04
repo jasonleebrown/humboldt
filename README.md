@@ -212,6 +212,14 @@ humboldt.plot.niche(z.sp2,"Species 2","PC1","PC2")
 humboldt.plot.niche(z.env1,"Env 1","PC1","PC2")
 humboldt.plot.niche(z.env2,"Env 2","PC1","PC2")
 
+## quantify niche similarity
+niche.sim.uncorrect<-humboldt.niche.similarity(z.sp1,z.sp2,correct.env=F)
+niche.sim.correct<-humboldt.niche.similarity(z.sp1,z.sp2,correct.env=T)
+
+## view results
+niche.sim.correct$D
+niche.sim.uncorrect$D
+
 ## perform niche equivalence tests
 niche.equiv<- humboldt.equivalence.stat(z.sp1,z.sp2,rep=100,kern.smooth=1, ncores=2)
 
@@ -222,22 +230,22 @@ humboldt.plot.histrogram(niche.equiv,"D","Equivalence")
 ee<- humboldt.espace.correction(Z.env1=z.env1,Z.env2=z.env2,Z.sp1=z.sp1,Z.sp2=z.sp2)
 
 ## plot differences between species' espaces
-humboldt.plot.espace.diff(ee, correct.env=F, type="species")
+humboldt.plot.espace.diff(ee, correct.env=T, type="species")
 
 ## plot contour lines of environment 1 if env1 and env2 are not identical
 if(ee$s.uncor.sum!=0){
 contour(z.env1$x,(sort((z.env1$y))),z.env1$Z,add=T,levels=quantile(z.env1$Z[z.env1$Z>0],c(0.1,0.5,0.75)),drawlabels=F,lty=c(1,2,3), lwd=c(1,1,1), col="grey")}
 
 ## plot differences between environments' espaces
-humboldt.plot.espace.diff(ee, correct.env=F, type="environments")
+humboldt.plot.espace.diff(ee, correct.env=T, type="environments")
 
 ## plot contour lines of environmental 1 if env1 and env2 are not identical
 if(ee$e.uncor.sum!=0){
 contour(z.env1$x,(sort((z.env1$y))),z.env1$Z,add=T,levels=quantile(z.env1$Z[z.env1$Z>0],c(0.1,0.5,0.75)),drawlabels=F,lty=c(1,2,3), lwd=c(1,1,1), col="grey")}
 
 ## perform background tests
-bg.sp1tosp2<-humboldt.background.stat(g2e=zz, rep = 100, sim.dir = 1, env.reso=0.41666669, kern.smooth = 1, correct.env = F, R = 100, run.silent.bak = F)
-bg.sp2tosp1<-humboldt.background.stat(g2e=zz, rep = 100, sim.dir = 2, env.reso=0.41666669, kern.smooth = 1, correct.env = F, R = 100, run.silent.bak = F)
+bg.sp1tosp2<-humboldt.background.stat(g2e=zz, rep = 100, sim.dir = 1, env.reso=0.41666669, kern.smooth = 1, correct.env = T, R = 100, run.silent.bak = F)
+bg.sp2tosp1<-humboldt.background.stat(g2e=zz, rep = 100, sim.dir = 2, env.reso=0.41666669, kern.smooth = 1, correct.env = T, R = 100, run.silent.bak = F)
 
 ## plot background tests 
 humboldt.plot.density(bg.sp1tosp2,"D","Background 1->2") 

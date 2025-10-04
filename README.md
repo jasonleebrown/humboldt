@@ -208,28 +208,43 @@ z2<- humboldt.grid.espace(scores.env12,scores.env2,scores.sp2,kern.smooth=1,R=10
 humboldt.plot.niche(z1,"Species 1","PC1","PC2")
 humboldt.plot.niche(z2,"Species 2","PC1","PC2")
 
-## mesure niche equivalence
+## perform niche equivalence tests
 niche.equiv<- humboldt.equivalence.stat(z1,z2,rep=100,kern.smooth=1, ncores=2)
 
+## run create a grid of Environmental Space Function
+z.sp1<- humboldt.grid.espace(scores.env12,scores.env1,scores.sp1,kern.smooth=1,R=100)
+z.sp2<- humboldt.grid.espace(scores.env12,scores.env2,scores.sp2,kern.smooth=1,R=100)
+z.env1<- humboldt.grid.espace(scores.env12,scores.env1,scores.env1,kern.smooth=1,R=100)
+z.env2<- humboldt.grid.espace(scores.env12,scores.env2,scores.env2,kern.smooth=1,R=100)
+
+## plot niche in espace
+humboldt.plot.niche(z.sp1,"Species 1","PC1","PC2")
+humboldt.plot.niche(z.sp2,"Species 2","PC1","PC2")
+humboldt.plot.niche(z.env1,"Env 1","PC1","PC2")
+humboldt.plot.niche(z.env2,"Env 2","PC1","PC2")
+
+## measure e-space correction coeff
+ee<- humboldt.espace.correction(Z.env1=z.env1,Z.env2=z.env2,Z.sp1=z.sp1,Z.sp2=z.sp2)
+
 ## plot differences between species' espaces
-humboldt.plot.espace.diff<-espace.diff=ee, correct.env=F, type="species")
+humboldt.plot.espace.diff(ee, correct.env=F, type="species")
 
 ## plot contour lines of environment 1 if env1 and env2 are not identical
 if(ee$s.uncor.sum!=0){
 contour(z.env1$x,(sort((z.env1$y))),z.env1$Z,add=T,levels=quantile(z.env1$Z[z.env1$Z>0],c(0.1,0.5,0.75)),drawlabels=F,lty=c(1,2,3), lwd=c(1,1,1), col="grey")}
 
 ## plot differences between environments' espaces
-humboldt.plot.espace.diff<-espace.diff=ee, correct.env=F, type="environments")
+humboldt.plot.espace.diff(ee, correct.env=F, type="environments")
 
 ## plot contour lines of environmental 1 if env1 and env2 are not identical
 if(ee$e.uncor.sum!=0){
 contour(z.env1$x,(sort((z.env1$y))),z.env1$Z,add=T,levels=quantile(z.env1$Z[z.env1$Z>0],c(0.1,0.5,0.75)),drawlabels=F,lty=c(1,2,3), lwd=c(1,1,1), col="grey")}
 
-## perform background statistics 
+## perform background tests
 bg.sp1tosp2<-humboldt.background.stat(g2e=zz, rep = 100, sim.dir = 1, env.reso=0.41666669, kern.smooth = 1, correct.env = F, R = 100, run.silent.bak = F)
 bg.sp2tosp1<-humboldt.background.stat(g2e=zz, rep = 100, sim.dir = 2, env.reso=0.41666669, kern.smooth = 1, correct.env = F, R = 100, run.silent.bak = F)
 
-## plot background statistics 
+## plot background tests 
 humboldt.plot.density(bg.sp1tosp2,"D","Background 1->2") 
 humboldt.plot.density(bg.sp2tosp1,"D","Background 2->1") 
 
@@ -237,25 +252,11 @@ humboldt.plot.density(bg.sp2tosp1,"D","Background 2->1")
 pnt1<- humboldt.pnt.index(scores.env12,scores.env1,scores.sp1,kern.smooth=1,R=100)
 pnt2<- humboldt.pnt.index(scores.env12,scores.env2,scores.sp2,kern.smooth=1,R=100
 
-## plot differences between species' espaces
-humboldt.plot.espace.diff<-espace.diff=zz, correct.env=F, type="species")
-
-## plot contour lines of environment 1 if env1 and env2 are not identical
-if(zz$s.uncor.sum!=0){
-contour(z.env1$x,(sort((z.env1$y))),z.env1$Z,add=T,levels=quantile(z.env1$Z[z.env1$Z>0],c(0.1,0.5,0.75)),drawlabels=F,lty=c(1,2,3), lwd=c(1,1,1), col="grey")}
-
-## plot differences between environments' espaces
-humboldt.plot.espace.diff<-espace.diff=zz, correct.env=F, type="environments")
-
-## plot contour lines of environmental 1 if env1 and env2 are not identical
-if(ee$e.uncor.sum!=0){
-contour(z.env1$x,(sort((z.env1$y))),z.env1$Z,add=T,levels=quantile(z.env1$Z[z.env1$Z>0],c(0.1,0.5,0.75)),drawlabels=F,lty=c(1,2,3), lwd=c(1,1,1), col="grey")}
-
 ## plot pca contributions
 humboldt.plot.contrib(zz$pca.cal$co,zz$pca.cal$eig)
 
 ## additional plots
-humboldt.plot.overlap(in.g2e=full, pdfname="FullEspaceOverlapSp1and2.pdf") 
+humboldt.plot.overlap(in.g2e=zz, pdfname="FullEspaceOverlapSp1and2.pdf") 
 humboldt.plot.scatter(env1[,3:4], xlab="Bio1", ylab="Bio2",main="environment")
 ```
 

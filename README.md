@@ -163,6 +163,101 @@ full<-humboldt.doitall(inname="full_extent", env1=reduc.vars$env1, env2=reduc.va
 ##run it a second time with a trimmed, shared-espace. Here the equivalence statistic tests for niche evolution or niche divergence. For comparing results, change only the following model parameters: reduce.env, non.analogous.environmental, env.trim, nae
 shared_ae<-humboldt.doitall(inname="shared_espace_ae", env1=reduc.vars$env1, env2=reduc.vars$env2, sp1=sp1, sp2=sp2, rarefy.dist=50, rarefy.units="km", env.reso=0.416669, reduce.env=2, reductype="PCA", non.analogous.environments="NO", correct.env=T, env.trim=T, env.trim.type="RADIUS", trim.buffer.sp1=500, trim.buffer.sp2=500, pcx=1,pcy=2, col.env=e.var, e.var=c(3:num.var.e), R=100, kern.smooth=1, e.reps=100, b.reps=100, nae="NO",thresh.espace.z=0.0001, p.overlap=T, p.boxplot=F, p.scatter=T,run.silent=F, ncores=2)
 ```
+### Example 3 - extended workflow outside of the 'do it all' function
+see below for help formating raster/environment data. 
+```markdown
+library(humboldt)
+
+##load environmental variables for all sites of the study area 1 (env1). Column names should be x,y,X1,X2,...,Xn)
+env1<-read.delim("env1.txt",h=T,sep="\t")
+
+## load environmental variables for all sites of the study area 2 (env2). Column names should be x,y,X1,X2,...,Xn)
+env2<-read.delim("env2.txt",h=T,sep="\t") 
+
+## remove NAs and make sure all variables are imported as numbers
+env1<-humboldt.scrub.env(env1)
+env2<-humboldt.scrub.env(env2)
+
+## load occurrence sites for the species at study area 1 (env1). Column names should be 'sp', 'x','y'
+occ.sp1<-na.exclude(read.delim("sp1.txt",h=T,sep="\t"))
+
+## load occurrence sites for the species at study area 2 (env2). Column names should be 'sp', 'x','y'. 
+occ.sp2<-na.exclude(read.delim("sp2.txt",h=T,sep="\t"))
+
+## perform modeling to determin imporant variables
+reduc.vars<- humboldt.top.env.brt(env1=env1,env2=env2,sp1=occ.sp1,sp2=occ.sp2,rarefy.dist=40, rarefy.units="km", env.reso=0.0833338,learning.rt1=0.01,learning.rt2=0.01,e.var=(3:21),pa.ratio=4,steps1=50,steps2=50,method="contrib",contrib.greater=5)
+
+## Adjust the number of variables input for e.vars after reduction to only important variables
+num.var.e<-ncol(reduc.vars$env1)
+
+## convert geographic space to espace
+zz<-humboldt.g2e(env1=env1, env2=env2, sp1=occ.sp1, sp2=occ.sp2, reduce.env = 2, reductype = "PCA", non.analogous.environments = "NO", env.trim= T, e.var=c(3:21),  col.env = e.var, trim.buffer.sp1 = 200, trim.buffer.sp2 = 200, rarefy.dist = 50, rarefy.units="km", env.reso=0.41666669, kern.smooth = 1, R = 100, run.silent = F)
+
+## store espace scores for sp1 and environments 1,2 and both environments combined output from humboldt.g2e
+scores.env1<-zz$scores.env1[1:2]
+scores.env2<-zz$scores.env2[1:2]
+scores.env12<- rbind(zz$scores.env1[1:2],zz$scores.env2[1:2])
+scores.sp1<-zz$scores.sp1[1:2]
+scores.sp2<-zz$scores.sp2[1:2]
+
+## run create a grid of Environmental Space Function
+z1<- humboldt.grid.espace(scores.env12,scores.env1,scores.sp1,kern.smooth=1,R=100)
+z2<- humboldt.grid.espace(scores.env12,scores.env2,scores.sp2,kern.smooth=1,R=100)
+
+## plot niche in espace
+humboldt.plot.niche(z1,"Species 1","PC1","PC2")
+humboldt.plot.niche(z2,"Species 2","PC1","PC2")
+
+## mesure niche equivalence
+niche.equiv<- humboldt.equivalence.stat(z1,z2,rep=100,kern.smooth=1, ncores=2)
+
+## plot differences between species' espaces
+humboldt.plot.espace.diff<-espace.diff=ee, correct.env=F, type="species")
+
+## plot contour lines of environment 1 if env1 and env2 are not identical
+if(ee$s.uncor.sum!=0){
+contour(z.env1$x,(sort((z.env1$y))),z.env1$Z,add=T,levels=quantile(z.env1$Z[z.env1$Z>0],c(0.1,0.5,0.75)),drawlabels=F,lty=c(1,2,3), lwd=c(1,1,1), col="grey")}
+
+## plot differences between environments' espaces
+humboldt.plot.espace.diff<-espace.diff=ee, correct.env=F, type="environments")
+
+## plot contour lines of environmental 1 if env1 and env2 are not identical
+if(ee$e.uncor.sum!=0){
+contour(z.env1$x,(sort((z.env1$y))),z.env1$Z,add=T,levels=quantile(z.env1$Z[z.env1$Z>0],c(0.1,0.5,0.75)),drawlabels=F,lty=c(1,2,3), lwd=c(1,1,1), col="grey")}
+
+## perform background statistics 
+bg.sp1tosp2<-humboldt.background.stat(g2e=zz, rep = 100, sim.dir = 1, env.reso=0.41666669, kern.smooth = 1, correct.env = F, R = 100, run.silent.bak = F)
+bg.sp2tosp1<-humboldt.background.stat(g2e=zz, rep = 100, sim.dir = 2, env.reso=0.41666669, kern.smooth = 1, correct.env = F, R = 100, run.silent.bak = F)
+
+## plot background statistics 
+humboldt.plot.density(bg.sp1tosp2,"D","Background 1->2") 
+humboldt.plot.density(bg.sp2tosp1,"D","Background 2->1") 
+
+## estimate the Potential Niche Truncation Index
+pnt1<- humboldt.pnt.index(scores.env12,scores.env1,scores.sp1,kern.smooth=1,R=100)
+pnt2<- humboldt.pnt.index(scores.env12,scores.env2,scores.sp2,kern.smooth=1,R=100
+
+## plot differences between species' espaces
+humboldt.plot.espace.diff<-espace.diff=zz, correct.env=F, type="species")
+
+## plot contour lines of environment 1 if env1 and env2 are not identical
+if(zz$s.uncor.sum!=0){
+contour(z.env1$x,(sort((z.env1$y))),z.env1$Z,add=T,levels=quantile(z.env1$Z[z.env1$Z>0],c(0.1,0.5,0.75)),drawlabels=F,lty=c(1,2,3), lwd=c(1,1,1), col="grey")}
+
+## plot differences between environments' espaces
+humboldt.plot.espace.diff<-espace.diff=zz, correct.env=F, type="environments")
+
+## plot contour lines of environmental 1 if env1 and env2 are not identical
+if(ee$e.uncor.sum!=0){
+contour(z.env1$x,(sort((z.env1$y))),z.env1$Z,add=T,levels=quantile(z.env1$Z[z.env1$Z>0],c(0.1,0.5,0.75)),drawlabels=F,lty=c(1,2,3), lwd=c(1,1,1), col="grey")}
+
+## plot pca contributions
+humboldt.plot.contrib(zz$pca.cal$co,zz$pca.cal$eig)
+
+## supplimental plots
+humboldt.plot.overlap(in.g2e=full, pdfname="FullEspaceOverlapSp1and2.pdf") 
+humboldt.plot.scatter(env1[,3:4], xlab="Bio1", ylab="Bio2",main="environment")
+```
 
 ## Getting environmental data formatted for ‘humboldt’
 The best practice is to start with climate data that is similar or matches to the desired analyses resolution (for most taxa we recommend 5 to 20km pixel resolution).

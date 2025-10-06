@@ -1972,7 +1972,7 @@ humboldt.g2e <- function(env1, env2, sp1, sp2, reduce.env = 2, reductype = "PCA"
         #env1 <- as.data.frame(env1sdf)
         env1_ptsC <- as.data.frame(env1sdf, geom = "XY")
         env1<-humboldt.sample.spp(dfsp = env1_ptsC, colspxy = 1:2, colspkept = NULL, 
-        dfvar = env1FULL, colvarxy = 1:2, colvar = "all", resolution = env.reso, run.silent.sam = TRUE)
+        dfvar = env1FULL, colvarxy = 1:2, colvar = "all", resolution = env.reso, run.silent.sam = FALSE)
 		print("Finished processsing Env1")
 		
 		# Sp2
@@ -1988,7 +1988,7 @@ humboldt.g2e <- function(env1, env2, sp1, sp2, reduce.env = 2, reductype = "PCA"
         #env2 <- as.data.frame(env2sdf)
 		env2_ptsC<- as.data.frame(env2sdf, geom = "XY")
 		env2<-humboldt.sample.spp(dfsp = env2_ptsC, colspxy = 1:2, colspkept = NULL, 
-        dfvar = env2FULL, colvarxy = 1:2, colvar = "all", resolution = env.reso, run.silent.sam = TRUE)
+        dfvar = env2FULL, colvarxy = 1:2, colvar = "all", resolution = env.reso, run.silent.sam = FALSE)
 
         options(warn = 0)
 		print("Finished processsing Env2")
@@ -2019,7 +2019,7 @@ humboldt.g2e <- function(env1, env2, sp1, sp2, reduce.env = 2, reductype = "PCA"
         #env1 <- as.data.frame(env1sdf)
 		env1_ptsC <- as.data.frame(env1sdf, geom = "XY")
         env1<-humboldt.sample.spp(dfsp = env1_ptsC, colspxy = 1:2, colspkept = NULL, 
-        dfvar = env1FULL, colvarxy = 1:2, colvar = "all", resolution = env.reso, run.silent.sam = TRUE)
+        dfvar = env1FULL, colvarxy = 1:2, colvar = "all", resolution = env.reso, run.silent.sam = FALSE)
 		print("Finished processsing Env1")
 		# Sp2
         env2in <- env2
@@ -2033,7 +2033,7 @@ humboldt.g2e <- function(env1, env2, sp1, sp2, reduce.env = 2, reductype = "PCA"
         #env2 <- as.data.frame(env2sdf)
         env2_ptsC<- as.data.frame(env2sdf, geom = "XY")
 		env2<-humboldt.sample.spp(dfsp = env2_ptsC, colspxy = 1:2, colspkept = NULL, 
-        dfvar = env2FULL, colvarxy = 1:2, colvar = "all", resolution = env.reso, run.silent.sam = TRUE)
+        dfvar = env2FULL, colvarxy = 1:2, colvar = "all", resolution = env.reso, run.silent.sam = FALSE)
 		options(warn = 0)
 		print("Finished processsing Env2")
 		print("Finished reduction of G-space using Radius method")    

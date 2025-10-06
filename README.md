@@ -161,10 +161,10 @@ num.var.e<-ncol(reduc.vars$env1)
 full<-humboldt.doitall(inname="full_extent", env1=reduc.vars$env1, env2=reduc.vars$env2, sp1=sp1, sp2=sp2, rarefy.dist=50, rarefy.units="km", env.reso=0.416669, reduce.env=0, reductype="PCA", non.analogous.environments="YES", correct.env=T, env.trim=T,  env.trim.type="RADIUS", trim.buffer.sp1=500, trim.buffer.sp2=500, pcx=1, pcy=2, col.env=e.var, e.var=c(3:num.var.e), R=100, kern.smooth=1, e.reps=100, b.reps=100, nae="YES",thresh.espace.z=0.0001, p.overlap=T, p.boxplot=F, p.scatter=F, run.silent=F, ncores=2)
 
 ## run it a second time with a trimmed, shared-espace. Here the equivalence statistic tests for niche evolution or niche divergence. For comparing results, change only the following model parameters: reduce.env, non.analogous.environmental, env.trim, nae
-shared_ae<-humboldt.doitall(inname="shared_espace_ae", env1=reduc.vars$env1, env2=reduc.vars$env2, sp1=sp1, sp2=sp2, rarefy.dist=50, rarefy.units="km", env.reso=0.416669, reduce.env=2, reductype="PCA", non.analogous.environments="NO", correct.env=T, env.trim=T, env.trim.type="RADIUS", trim.buffer.sp1=500, trim.buffer.sp2=500, pcx=1,pcy=2, col.env=e.var, e.var=c(3:num.var.e), R=100, kern.smooth=1, e.reps=100, b.reps=100, nae="NO",thresh.espace.z=0.0001, p.overlap=T, p.boxplot=F, p.scatter=T,run.silent=F, ncores=2)
+shared_ae<-humboldt.doitall(inname="shared_espace_ae", env1=reduc.vars$env1, env2=reduc.vars$env2, sp1=sp1, sp2=sp2, rarefy.dist=50, rarefy.units="km", env.reso=0.416669, reduce.env=2, reductype="PCA", non.analogous.environments="NO", correct.env=T, env.trim=T, env.trim.type="RADIUS", trim.buffer.sp1=500, trim.buffer.sp2=500, pcx=1,pcy=2, col.env=e.var, e.var=c(3:num.var.e), R=100, kern.smooth=1, e.reps=100, b.reps=100, nae="NO", thresh.espace.z=0.0001, p.overlap=T, p.boxplot=F, p.scatter=T,run.silent=F, ncores=2)
 ```
 ### Example 3 - extended workflow outside of the 'do it all' function
-see below for help formating raster/environment data. 
+The doitall function is a large wrapper function for most the analyses in humbodlt.  As a coder, such functions are typically avoided, because they can be challenging to troubleshoot.  If you are having any issues with that function, consider doing your analyses outside of it, as shown below.  See below for help formating raster/environment data. 
 ```markdown
 library(humboldt)
 

@@ -230,14 +230,14 @@ humboldt.plot.histrogram(niche.equiv,"D","Equivalence")
 ee<- humboldt.espace.correction(Z.env1=z.env1,Z.env2=z.env2,Z.sp1=z.sp1,Z.sp2=z.sp2)
 
 ## plot differences between species' espaces
-humboldt.plot.espace.diff(ee, correct.env=T, type="species")
+humboldt.plot.espace.diff(ee, correct.env=F, type="species")
 
 ## plot contour lines of environment 1 if env1 and env2 are not identical
 if(ee$s.uncor.sum!=0){
 contour(z.env1$x,(sort((z.env1$y))),z.env1$Z,add=T,levels=quantile(z.env1$Z[z.env1$Z>0],c(0.1,0.5,0.75)),drawlabels=F,lty=c(1,2,3), lwd=c(1,1,1), col="grey")}
 
 ## plot differences between environments' espaces
-humboldt.plot.espace.diff(ee, correct.env=T, type="environments")
+humboldt.plot.espace.diff(ee, correct.env=F, type="environments")
 
 ## plot contour lines of environmental 1 if env1 and env2 are not identical
 if(ee$e.uncor.sum!=0){

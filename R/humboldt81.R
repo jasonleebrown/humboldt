@@ -3385,6 +3385,10 @@ humboldt.doitall <- function(inname = "DoItAll", env1, env2, sp1, sp2, rarefy.di
              pnt2R<-paste("  PNT.index: ",pnt2R,"; moderate PNT", sep = "")}
 		if (pnt2R>=0.3 ){
              pnt2R<-paste("  PNT.index: ",pnt2R,"; high PNT", sep = "")}
+	##temp - remove once this is fixed - 2/2026
+	pnt2R<-"NA"
+	##temp - remove once this is fixed - 2/2026
+	pnt1R<-"NA"
     ################################################################ 
     pdf(file = paste(inname, "_SPP.pdf", sep = ""))  # create a pdf file named from the names of the 2 species
     layout(matrix(c(1, 1, 2, 2, 1, 1, 2, 2, 3, 3, 4, 5, 3, 3, 6, 7), 4, 4, byrow = TRUE))
@@ -5263,4 +5267,5 @@ humboldt.calibration <- function(obs, preds, family = "binomial")  {
 	calibration.result <- c(mod$coef, miller1, miller2, miller3)
 	names(calibration.result) <- c("intercept", "slope", "testa0b1", "testa0|b1", "testb1|a")
 	return(calibration.result)
+
 }

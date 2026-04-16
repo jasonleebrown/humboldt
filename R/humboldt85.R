@@ -612,7 +612,7 @@ humboldt.niche.similarity <- function(z1, z2, correct.env = T, nae = "NO", thres
 
 ##################################################################################################
 ##################################################################################################
-### fixed 9/03/2025
+### fixed 4/16/2026
 ##################################################################################################
 ##################################################################################################
 #' Niche equivalence statistic
@@ -780,7 +780,7 @@ equivalency.iter<- function(repi,z1_sp, z1_glob, z2_sp, z2_glob, nacinZ, threshi
 	if (ncores == 1 & run.silent.equ == F & userOS==2){setTkProgressBar(pb, repi, title=paste("Iteration",repi,"(of", repT,")"))}
 	return(c(sim.o.D, sim.o.I))
  }
-################################################################################################## fixed 9/3/2025
+################################################################################################## fixed 4/16/2026
 #' Niche background statistic
 #' @param rep is the number of iterations. Values higher than 200 are recommend for final analysis.
 #' @param run.silent.bak if run.silent=T, texts boxes displaying progress will not be displayed
@@ -3767,7 +3767,10 @@ humboldt.top.env.brt <- function(env1, env2, sp1, sp2, rarefy.dist = 0, rarefy.u
     
 }
 
-humboldt.top.env <- humboldt.top.env.brt
+#' Humboldt Top Env (alias to old name)
+#' @description This is an alias for humboldt.top.env so that older scripts continue to function.  This is an alias for the function humboldt.top.env.brt.
+#' @export
+humboldt.top.env <- humboldt::humboldt.top.env.brt
 
 ##################################################################################################
 #######################Select top environmental variables for PCA - Maxent

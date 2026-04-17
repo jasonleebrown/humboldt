@@ -1,6 +1,6 @@
 ![Alt text](https://raw.githubusercontent.com/jasonleebrown/humboldt/master/humboldt.jpg?raw=true "Title") 
 
-## Humboldt 2.0 - a few more bugs slain
+## Humboldt 2.0.041626 - a few more bugs slain
 <p> April 16, 2026</p>
 I am pleased to announce that multi-CPU support is fully back and modernized! 
 <p>Known bugs:</p>

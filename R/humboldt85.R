@@ -3392,11 +3392,14 @@ humboldt.doitall <- function(inname = "DoItAll", env1, env2, sp1, sp2, rarefy.di
     
     ###############################################################
     # calculation of occurrence density and test of niche equivalency and background
+    print("Step 1 (of 3): Running Equivalence Stats")
     a <- humboldt.equivalence.stat(z5, z6, rep = e.reps, correct.env = correct.env, nae = nacinZ, 
         kern.smooth = kern.smoothinZ, run.silent.equ = run.silent, ncores=cores.n)  # test of niche equivalency and background according to Warren et al. 2008
-    b <- humboldt.background.stat(g2e = zz, correct.env = correct.env, env.reso = env.reso, sim.dir = 1, 
+    print("Step 2 (of 3): Running Background Stats: 1 -> 2")
+	b <- humboldt.background.stat(g2e = zz, correct.env = correct.env, env.reso = env.reso, sim.dir = 1, 
         rep = b.reps, kern.smooth = kern.smoothinZ, R = Rin, force.equal.sampl=b.force.equal.sample, run.silent.bak = run.silent, ncores=cores.n)
-    b2 <- humboldt.background.stat(g2e = zz, correct.env = correct.env, env.reso = env.reso, 
+    print("Step 3 (of 3): Running Background Stats: 2 -> 1")
+	b2 <- humboldt.background.stat(g2e = zz, correct.env = correct.env, env.reso = env.reso, 
         sim.dir = 2, rep = b.reps, kern.smooth = kern.smoothinZ, R = Rin, force.equal.sampl=b.force.equal.sample, run.silent.bak = run.silent, ncores=cores.n)
     ###############################################################
     # estimate niche truncation index

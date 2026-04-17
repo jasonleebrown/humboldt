@@ -3827,7 +3827,7 @@ scores.sp1<-input.g2e$scores.sp1[1:2]
 scores.sp2<-input.g2e$scores.sp2[1:2]
 
 #get list of k parameters
-k.step.num=as.integer((k.max-k.min)/k.step)
+k.step.num=(as.integer((k.max-k.min)/k.step)+1)
 k.eval=NULL
 val.k=NULL
 

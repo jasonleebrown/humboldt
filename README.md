@@ -5,7 +5,7 @@
 I am pleased to announce that multi-CPU support is fully back and modernized! Thanks a lot to [Chat GPS R Wizard](http://chatgpt.com/g/g-TgjKDuQwZ-r-wizard). for aiding me slay several very annoying bugs.
 
 <p>Known bugs:</p>
-<p>    -humboldt.pnt.index: Occasionally this null out - not sure what is going, this function was largely re-written for Humboldt 2.0 due to the transistion to Terra, as of now it's muted from output of the Doitall Function  </p>
+<p>    -humboldt.pnt.index occasionally errors out. This function was largely re-written for Humboldt 2.0 due to the transition to Terra and as of now, it's muted from the output of the Doitall Function until I completely fix it </p>
 
 
 ## Humboldt 2.0 is finally here!

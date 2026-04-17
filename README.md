@@ -2,7 +2,7 @@
 
 ## Humboldt 2.0.041626 - a few more bugs slain
 <p> April 16, 2026</p>
-I am pleased to announce that multi-CPU support is fully back and modernized! Thanks alot to [Chat GPS R Wizard](http://chatgpt.com/g/g-TgjKDuQwZ-r-wizard). for aiding me slay several very annoying bugs.
+I am pleased to announce that multi-CPU support is fully back and modernized! Thanks alot to [Chat GPS R Wizard](https://chatgpt.com/g/g-TgjKDuQwZ-r-wizard). for aiding me slay several very annoying bugs.
 
 <p>Known bugs:</p>
 <p>    -humboldt.pnt.index: Occasionally this null out - not sure what is going, this function was largely re-written for Humboldt 2.0 due to the transistion to Terra, as of now it's muted from output of the Doitall Function  </p>

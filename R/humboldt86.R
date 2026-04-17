@@ -3852,10 +3852,6 @@ print("*************************************************")
 print("Look at the niche Espace plots for each smoothing value (K). This is the scale at which kernel smoothing occurs on environmental data; larger values (i.e., 2) increase scale (making Espace transitions smoother and typically larger) and smaller values (i.e. 0.5) decrease scale (making occupied Espace clusters denser and more irregular). Usually, I look for a smoothing value that characterizes niches that are largely contiguous (but with some irregularity).  It’s best not to select a value that overly smooths the niche (looking like a perfectly round blob) or, conversely, under smooths the niche (looking like an archipelago map). This parameter is incredibly important in the niche characterization of your study species and all downstream analyses. Remeber that multimodal Espace occupancy can be somewhat common when a species occupies an extreme aspect of habitat or when Espace is not broadly accessible in both dimensions of Espace.  Thus, a few isolated or restricted 'blobs' can be biologically realistic for some species")
 print("*************************************************")
 print("*************************************************")
-
-print(paste("At analysis start, you input a k=",kern.smoothinZ))
-print("*************************************************")
-print("*************************************************")
 kern.smooth.future <- as.numeric(readline(prompt = "Based on Espace plots, input the best kernal smoothing value for analyses here:"))
 l <- list()
 l <- kern.smooth.future

@@ -3137,7 +3137,7 @@ humboldt.doitall <- function(inname = "DoItAll", env1, env2, sp1, sp2, rarefy.di
     reduce.env = 2, reductype = "PCA", non.analogous.environments = "NO", nae.window=5, env.trim= T, env.trim.type="MCP", trim.mask1, trim.mask2, trim.buffer.sp1 = 200, trim.buffer.sp2 = 200, 
     color.ramp=1, correct.env = T, pcx=1, pcy=2, col.env = e.var, e.var, R = 100, kern.smooth = 1, 
     e.reps = 100, b.reps = 100, b.force.equal.sample=F, nae = "YES", 
-    thresh.espace.z = 0.0001, p.overlap = T, p.boxplot = F, p.scatter = F, run.silent = F, ncores=1) {
+    thresh.espace.z = 0.0001, p.overlap = T, p.boxplot = F, p.scatter = F, run.silent = F, ncores=1, select.k=TRUE) {
     
     l <- list()
     inname<-inname
@@ -3150,7 +3150,7 @@ humboldt.doitall <- function(inname = "DoItAll", env1, env2, sp1, sp2, rarefy.di
     #################################### Gspace to Espace ###########################################
     #################################################################################################
     zz <<- humboldt.g2e(env1, env2, sp1, sp2, reduce.env, reductype, non.analogous.environments, nae.window,
-        env.trim, e.var, col.env = e.var,env.trim.type, trim.mask1, trim.mask2, trim.buffer.sp1, trim.buffer.sp2, pcx=pcx, pcy=pcy, rarefy.dist,rarefy.units, env.reso, kern.smooth, R, run.silent = run.silent, select.k=TRUE)
+        env.trim, e.var, col.env = e.var,env.trim.type, trim.mask1, trim.mask2, trim.buffer.sp1, trim.buffer.sp2, pcx=pcx, pcy=pcy, rarefy.dist,rarefy.units, env.reso, kern.smooth, R, run.silent = run.silent)
     ##################################################################################################
     ############################# plots of PCA and Espace ############################################
     ############################# ####################################################################

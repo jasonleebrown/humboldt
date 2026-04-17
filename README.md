@@ -1,8 +1,7 @@
 ![Alt text](https://raw.githubusercontent.com/jasonleebrown/humboldt/master/humboldt.jpg?raw=true "Title") 
 
 ## Humboldt 2.0.041626 - a few more bugs slain
-April 16, 2026
-I am pleased to announce that multi-CPU support is fully back and modernized! Thanks a lot to [Chat GPS R Wizard](http://chatgpt.com/g/g-TgjKDuQwZ-r-wizard) for being a great sidekick in slaying these very annoying bugs.
+April 16, 2026.  I am pleased to announce that multi-CPU support is fully back and modernized! Thanks a lot to [Chat GPS R Wizard](http://chatgpt.com/g/g-TgjKDuQwZ-r-wizard) for being a great sidekick in slaying these very annoying bugs.
 
 <p>Known bugs:</p>
 <p>    -humboldt.pnt.index occasionally errors out. This function was largely re-written for Humboldt 2.0 due to the transition to Terra and as of now, it's muted from the output of the Doitall Function until I completely fix it </p>

@@ -3174,7 +3174,7 @@ humboldt.doitall <- function(inname = "DoItAll", env1, env2, sp1, sp2, rarefy.di
     scores.env12a <- scores.env12
     scores.sp1a <- zz$scores.sp1
     scores.sp2a <- zz$scores.sp2
-	if (select.k==TRUE){kern.smoothinZ <- humboldt.smoothing.eval(in.g2e = zz)}
+	if (select.k==TRUE){kern.smoothinZ <- humboldt.smoothing.eval(input.g2e = zz)}
     #scores.env1a$Axis2 <- (scores.env1a$Axis2 )
     #scores.env2a$Axis2 <- (scores.env2a$Axis2 )
     #scores.env12a$Axis2 <- (scores.env12a$Axis2 )

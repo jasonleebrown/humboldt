@@ -1,9 +1,15 @@
 ![Alt text](https://raw.githubusercontent.com/jasonleebrown/humboldt/master/humboldt.jpg?raw=true "Title") 
 
+## Humboldt 2.0 - a few more bugs slain
+<p> April 16, 2026</p>
+I am pleased to announce that multi-CPU support is fully back and modernized! 
+<p>Known bugs:</p>
+<p>    -humboldt.pnt.index: Occasionally this null out - not sure what is going, this function was largely re-written for Humboldt 2.0 due to the transistion to Terra, as of now it's muted from output of the Doitall Function  </p>
+
 
 ## Humboldt 2.0 is finally here!
 <p> September 9, 2025</p>
-    I am pleased to announce that Humbodlt 2.0 is released!  
+    I am pleased to announce that Humboldt 2.0 is released!  
 <p> Main features:</p>
 <p> -Updated to work in the Terra infrastructure</p>
 <p>     (rgeos, raster, dismo, rgdal... all have been retired)</p>

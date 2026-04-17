@@ -3767,10 +3767,12 @@ humboldt.top.env.brt <- function(env1, env2, sp1, sp2, rarefy.dist = 0, rarefy.u
     
 }
 
-#' Humboldt Top Env (alias to old name)
+#' Humboldt Top Env (old function)
 #' @description This is an alias for humboldt.top.env so that older scripts continue to function.  This is an alias for the function humboldt.top.env.brt.
 #' @export
-humboldt.top.env <- humboldt::humboldt.top.env.brt
+humboldt.top.env <- function(...) {
+  warning("humboldt.top.env() is deprecated; please use humboldt.top.env.brt() instead.", call. = FALSE)
+}
 
 ##################################################################################################
 #######################Select top environmental variables for PCA - Maxent

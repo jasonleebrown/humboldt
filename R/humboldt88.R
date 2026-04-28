@@ -2424,8 +2424,8 @@ humboldt.g2e <- function(env1, env2, sp1, sp2, reduce.env = 2, reductype = "PCA"
 		ratiozz_SP2 = remainzz_SP2/startzz_SP2
 		percentzz_SP2 = round(ratioZZ_SP2 *100,2)
 		if( ratiozz_SP2 > 0.74 | ratiozz_SP1 > 0.74 ){
-		    print(paste("!!!!!Only",percentzz_SP1, "of the input localities remain for species 1!!!!!")
-			print(paste("!!!!!Only",percentzz_SP2, "of the input localities remain for species 2!!!!!")
+		    print(paste("!!!!!Only",percentzz_SP1, "of the input localities remain for species 1!!!!!"))
+			print(paste("!!!!!Only",percentzz_SP2, "of the input localities remain for species 2!!!!!"))
 			print("*****************************************************************")
 			print("*****************************************************************")
 			print("As of April 2026, after many discussions and analyses of hundreds of species, my research team has determined that the Niche Divergence Test (NDT, sensu Brown and Carnaval 2019), though generally robust, doesn’t perform optimally when comparing a species with a very large range to a species with a tiny range.    What happens in this situation is most of the points for the large-range species are removed and retaining only the points shared within the E-space of tiny-range species.  This forces a biologically illogical comparison that is likely to not find any significant differences due to the very limited E-space when combined with the smoothing kernels of each species’ localities.")  
@@ -2666,7 +2666,7 @@ humboldt.g2e <- function(env1, env2, sp1, sp2, reduce.env = 2, reductype = "PCA"
 		ratiozz_SP2 = remainzz_SP2/startzz_SP2
 		percentzz_SP2 = round(ratioZZ_SP2 *100,2)
 		if( ratiozz_SP2 > 0.74){
-		    print(paste("!!!!!Only",percentzz_SP2, "of the input localities remain for species 2!!!!!")
+		    print(paste("!!!!!Only",percentzz_SP2, "of the input localities remain for species 2!!!!!"))
 			print("*****************************************************************")
 			print("*****************************************************************")
 			print("As of April 2026, after many discussions and analyses of hundreds of species, my research team has determined that the Niche Divergence Test (NDT, sensu Brown and Carnaval 2019), though generally robust, doesn’t perform optimally when comparing a species with a very large range to a species with a tiny range.    What happens in this situation is most of the points for the large-range species are removed and retaining only the points shared within the E-space of tiny-range species.  This forces a biologically illogical comparison that is likely to not find any significant differences due to the very limited E-space when combined with the smoothing kernels of each species’ localities.")  
@@ -2862,7 +2862,7 @@ humboldt.g2e <- function(env1, env2, sp1, sp2, reduce.env = 2, reductype = "PCA"
 		ratiozz_SP2 = remainzz_SP2/startzz_SP2
 		percentzz_SP2 = round(ratioZZ_SP2 *100,2)
 		if( ratiozz_SP2 > 0.74){
-		    print(paste("!!!!!Only",percentzz_SP2, "of the input localities remain for species 1!!!!!")
+		    print(paste("!!!!!Only",percentzz_SP2, "of the input localities remain for species 1!!!!!"))
 			print("*****************************************************************")
 			print("*****************************************************************")
 			print("As of April 2026, after many discussions and analyses of hundreds of species, my research team has determined that the Niche Divergence Test (NDT, sensu Brown and Carnaval 2019), though generally robust, doesn’t perform optimally when comparing a species with a very large range to a species with a tiny range.    What happens in this situation is most of the points for the large-range species are removed and retaining only the points shared within the E-space of tiny-range species.  This forces a biologically illogical comparison that is likely to not find any significant differences due to the very limited E-space when combined with the smoothing kernels of each species’ localities.")  
@@ -3118,7 +3118,7 @@ humboldt.g2e <- function(env1, env2, sp1, sp2, reduce.env = 2, reductype = "PCA"
 		ratiozz_SP2 = remainzz_SP2/startzz_SP2
 		percentzz_SP2 = round(ratioZZ_SP2 *100,2)
 		if( ratiozz_SP2 > 0.74){
-		    print(paste("!!!!!Only",percentzz_SP2, "of the input localities remain for species 2!!!!!")
+		    print(paste("!!!!!Only",percentzz_SP2, "of the input localities remain for species 2!!!!!"))
 			print("*****************************************************************")
 			print("*****************************************************************")
 			print("As of April 2026, after many discussions and analyses of hundreds of species, my research team has determined that the Niche Divergence Test (NDT, sensu Brown and Carnaval 2019), though generally robust, doesn’t perform optimally when comparing a species with a very large range to a species with a tiny range.    What happens in this situation is most of the points for the large-range species are removed and retaining only the points shared within the E-space of tiny-range species.  This forces a biologically illogical comparison that is likely to not find any significant differences due to the very limited E-space when combined with the smoothing kernels of each species’ localities.")  

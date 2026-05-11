@@ -201,6 +201,7 @@ num.var.e<-ncol(reduc.vars$env1)
 ## convert geographic space to environmental space, this step determines the epsace and if you are running a niche similarity test (reduce.env=0, non.alalogous.environments = "YES") of niche divergence test (reduce.env=2, non.alalogous.environments = "NO")
 zz<-humboldt.g2e(env1=reduc.vars$env1, env2=reduc.vars$env2, sp1=occ.sp1, sp2=occ.sp2, reduce.env = 2, reductype = "PCA", non.analogous.environments = "NO", env.trim= T, e.var=num.var.e,  col.env = e.var, trim.buffer.sp1 = 200, trim.buffer.sp2 = 200, rarefy.dist = 50, rarefy.units="km", env.reso=0.41666669, kern.smooth = 1, R = 100, run.silent = F)
 
+## determine best Kernel smoothing value
 kern.smooth.in<-humboldt.smoothing.eval(zz, k.min=0.25,k.max=2,k.step=0.25)
 
 ## store e-space scores for species and environments environments combined output from humboldt.g2e

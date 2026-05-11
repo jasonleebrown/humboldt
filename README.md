@@ -199,7 +199,9 @@ reduc.vars<- humboldt.top.env.brt(env1=env1,env2=env2,sp1=occ.sp1,sp2=occ.sp2,ra
 num.var.e<-ncol(reduc.vars$env1)
 
 ## convert geographic space to environmental space, this step determines the epsace and if you are running a niche similarity test (reduce.env=0, non.alalogous.environments = "YES") of niche divergence test (reduce.env=2, non.alalogous.environments = "NO")
-zz<-humboldt.g2e(env1=env1, env2=env2, sp1=occ.sp1, sp2=occ.sp2, reduce.env = 2, reductype = "PCA", non.analogous.environments = "NO", env.trim= T, e.var=num.var.e,  col.env = e.var, trim.buffer.sp1 = 200, trim.buffer.sp2 = 200, rarefy.dist = 50, rarefy.units="km", env.reso=0.41666669, kern.smooth = 1, R = 100, run.silent = F)
+zz<-humboldt.g2e(env1=reduc.vars$env1, env2=reduc.vars$env2, sp1=occ.sp1, sp2=occ.sp2, reduce.env = 2, reductype = "PCA", non.analogous.environments = "NO", env.trim= T, e.var=num.var.e,  col.env = e.var, trim.buffer.sp1 = 200, trim.buffer.sp2 = 200, rarefy.dist = 50, rarefy.units="km", env.reso=0.41666669, kern.smooth = 1, R = 100, run.silent = F)
+
+kern.smooth.in<-humboldt.smoothing.eval(zz, k.min=0.25,k.max=2,k.step=0.25)
 
 ## store e-space scores for species and environments environments combined output from humboldt.g2e
 scores.env1<-zz$scores.env1[1:2]
@@ -209,10 +211,10 @@ scores.sp1<-zz$scores.sp1[1:2]
 scores.sp2<-zz$scores.sp2[1:2]
 
 ##  estimate environmental space in 2D 
-z.sp1<- humboldt.grid.espace(scores.env12,scores.env1,scores.sp1,kern.smooth=1,R=100)
-z.sp2<- humboldt.grid.espace(scores.env12,scores.env2,scores.sp2,kern.smooth=1,R=100)
-z.env1<- humboldt.grid.espace(scores.env12,scores.env1,scores.env1,kern.smooth=1,R=100)
-z.env2<- humboldt.grid.espace(scores.env12,scores.env2,scores.env2,kern.smooth=1,R=100)
+z.sp1<- humboldt.grid.espace(scores.env12,scores.env1,scores.sp1,kern.smooth=kern.smooth.in,R=100)
+z.sp2<- humboldt.grid.espace(scores.env12,scores.env2,scores.sp2,kern.smooth=kern.smooth.in,R=100)
+z.env1<- humboldt.grid.espace(scores.env12,scores.env1,scores.env1,kern.smooth=kern.smooth.in,R=100)
+z.env2<- humboldt.grid.espace(scores.env12,scores.env2,scores.env2,kern.smooth=kern.smooth.in,R=100)
 
 ## plot species estimated fundamental niches and habitats in espace, increase 'kern.smooth' if niche is too patchy
 humboldt.plot.niche(z.sp1,"Species 1","PC1","PC2")
@@ -229,7 +231,7 @@ niche.sim.correct$D
 niche.sim.uncorrect$D
 
 ## perform niche equivalence tests 
-niche.equiv<- humboldt.equivalence.stat(z.sp1,z.sp2,rep=100,kern.smooth=1, ncores=2)
+niche.equiv<- humboldt.equivalence.stat(z.sp1,z.sp2,rep=100,kern.smooth=kern.smooth.in, ncores=2)
 
 ## plot results
 humboldt.plot.histrogram(niche.equiv,"D","Equivalence") 
@@ -252,16 +254,16 @@ if(ee$e.uncor.sum!=0){
 contour(z.env1$x,(sort((z.env1$y))),z.env1$Z,add=T,levels=quantile(z.env1$Z[z.env1$Z>0],c(0.1,0.5,0.75)),drawlabels=F,lty=c(1,2,3), lwd=c(1,1,1), col="grey")}
 
 ## perform background tests
-bg.sp1tosp2<-humboldt.background.stat(g2e=zz, rep = 100, sim.dir = 1, env.reso=0.41666669, kern.smooth = 1, correct.env = T, R = 100, run.silent.bak = F)
-bg.sp2tosp1<-humboldt.background.stat(g2e=zz, rep = 100, sim.dir = 2, env.reso=0.41666669, kern.smooth = 1, correct.env = T, R = 100, run.silent.bak = F)
+bg.sp1tosp2<-humboldt.background.stat(g2e=zz, rep = 100, sim.dir = 1, env.reso=0.41666669, kern.smooth = kern.smooth.in, correct.env = T, R = 100, run.silent.bak = F)
+bg.sp2tosp1<-humboldt.background.stat(g2e=zz, rep = 100, sim.dir = 2, env.reso=0.41666669, kern.smooth = kern.smooth.in, correct.env = T, R = 100, run.silent.bak = F)
 
 ## plot background tests 
 humboldt.plot.density(bg.sp1tosp2,"D","Background 1->2") 
 humboldt.plot.density(bg.sp2tosp1,"D","Background 2->1") 
 
 ## estimate the Potential Niche Truncation Index
-pnt1<- humboldt.pnt.index(scores.env12,scores.env1,scores.sp1,kern.smooth=1,R=100)
-pnt2<- humboldt.pnt.index(scores.env12,scores.env2,scores.sp2,kern.smooth=1,R=100)
+pnt1<- humboldt.pnt.index(scores.env12,scores.env1,scores.sp1,kern.smooth=kern.smooth.in,R=100)
+pnt2<- humboldt.pnt.index(scores.env12,scores.env2,scores.sp2,kern.smooth=kern.smooth.in,R=100)
 
 ## plot pca contributions
 humboldt.plot.contrib(zz$pca.cal$co,zz$pca.cal$eig)

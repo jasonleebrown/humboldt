@@ -1,6 +1,6 @@
 ![Alt text](https://raw.githubusercontent.com/jasonleebrown/humboldt/master/humboldt.jpg?raw=true "Title") 
 
-## Humboldt 2.0.092826 - a few more bugs slain
+## Humboldt 2.0.092826 - Percent Niche Truncation function fixed
 humboldt.pnt.index is fixed - I hope.  To be sure, I added a way to bypass it within the 'doitall' function, if the 'humboldt.pnt.index' function errors out add "pnt.silent = T" to your inputs and this will skip this analysis.
 
 ## Humboldt 2.0.041626 - a few more bugs slain

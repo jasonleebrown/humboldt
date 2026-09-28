@@ -1,5 +1,8 @@
 ![Alt text](https://raw.githubusercontent.com/jasonleebrown/humboldt/master/humboldt.jpg?raw=true "Title") 
 
+## Humboldt 2.0.092826 - a few more bugs slain
+humboldt.pnt.index is fixed - I hope.  To be sure, I added a way to bypass it within the 'doitall' function, if the 'humboldt.pnt.index' function errors out add "pnt.silent = T" to your inputs and this will skip this analysis.
+
 ## Humboldt 2.0.041626 - a few more bugs slain
 April 16, 2026.  I am pleased to announce that multi-CPU support is fully back and modernized! Thanks a lot to [Chat GPS R Wizard](http://chatgpt.com/g/g-TgjKDuQwZ-r-wizard) for being a great sidekick in slaying these very annoying bugs.
 

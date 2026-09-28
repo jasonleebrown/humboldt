@@ -3605,9 +3605,9 @@ humboldt.doitall <- function(inname = "DoItAll", env1, env2, sp1, sp2, rarefy.di
 	if (pnt.silent == T) {pnt1$pnt.index<-0;pnt2$pnt.index<-0}
 	if (pnt.silent == F) {
 		pnt1<- humboldt.pnt.index(scores.env12a[1:2], scores.env1a[1:2], scores.sp1a[1:2], kern.smooth= kern.smoothinZ, R = Rin)
-		pnt2<- humboldt.pnt.index(scores.env12a[1:2], scores.env2a[1:2], scores.sp2a[1:2], kern.smooth= kern.smoothinZ, R = Rin)
-		pnt1R<-round(pnt1$pnt.index, d=2)
-		pnt2R<-round(pnt2$pnt.index, d=2)}
+		pnt2<- humboldt.pnt.index(scores.env12a[1:2], scores.env2a[1:2], scores.sp2a[1:2], kern.smooth= kern.smoothinZ, R = Rin)}
+	pnt1R<-round(pnt1$pnt.index, d=2)
+	pnt2R<-round(pnt2$pnt.index, d=2)
 	print("Measuring Niche Truncation Index:")
 	print("Species 1:")
 		if (pnt1R>1){
